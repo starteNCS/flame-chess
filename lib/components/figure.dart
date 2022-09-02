@@ -1,8 +1,11 @@
 import 'dart:ui';
 
 import 'package:flame/components.dart';
+import 'package:flame/experimental.dart';
 import 'package:flame/flame.dart';
 import 'package:flutterwindows/components/board_position.dart';
+import 'package:flutterwindows/events/tap_event.dart';
+import 'package:flutterwindows/main.dart';
 import 'package:flutterwindows/util/enums/color.dart';
 import 'package:flutterwindows/util/enums/figure.dart';
 
@@ -18,9 +21,16 @@ class FigureComponent extends BoardPositionComponent {
   });
 
   @override
+  void onTapUp(TapUpEvent event) {
+    eventStream.add(TapEvent(color: color, figure: figure));
+  }
+
+  @override
   void render(Canvas canvas) {
     final sprite = Sprite(Flame.images.fromCache(_getFigureImagePath()));
     sprite.render(canvas, size: figureSize, position: pos);
+
+    super.render(canvas);
   }
 
   String _getFigureImagePath() {

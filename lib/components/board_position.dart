@@ -1,13 +1,16 @@
 import 'package:flame/components.dart';
+import 'package:flame/experimental.dart';
 import 'package:flutterwindows/components/board.dart';
 
-class BoardPositionComponent extends PositionComponent {
+class BoardPositionComponent extends PositionComponent with TapCallbacks {
   final int figureX;
   final int figureY;
   final Vector2 figureSize =
       Vector2(BoardComponent.fieldSize, BoardComponent.fieldSize);
 
-  BoardPositionComponent({required this.figureX, required this.figureY});
+  BoardPositionComponent({required this.figureX, required this.figureY}) {
+    size = figureSize;
+  }
 
   Vector2 get pos => Vector2(x, y);
 

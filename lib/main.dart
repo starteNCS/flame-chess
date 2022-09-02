@@ -7,16 +7,17 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterwindows/components/board.dart';
 import 'package:flutterwindows/components/debugger/debugger.dart';
-import 'package:flutterwindows/events/event.dart';
 import 'package:flutterwindows/services/board_service.dart';
+import 'package:flutterwindows/services/event_manager.dart';
 
+final EventManager eventManager = EventManager();
 final BoardService boardService = BoardService();
-final eventStream = StreamController<Event>.broadcast();
 const isDebugMode = true;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final game = ChessGame();
+  boardService.hashCode;
 
   runApp(GameWidget(
     game: game,

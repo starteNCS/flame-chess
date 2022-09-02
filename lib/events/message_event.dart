@@ -1,8 +1,10 @@
 import 'package:flutterwindows/events/event.dart';
 
 class MessageEvent extends Event {
-  MessageEvent({required super.message});
+  final String message;
+
+  MessageEvent({required this.message});
 
   @override
-  String get value => message;
+  String get debuggerValue => message;
 }

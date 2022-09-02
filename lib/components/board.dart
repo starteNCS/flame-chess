@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flame/experimental.dart';
 import 'package:flutterwindows/components/figure.dart';
+import 'package:flutterwindows/events/board_change_event.dart';
 import 'package:flutterwindows/main.dart';
 import 'package:flutterwindows/services/models/figure_tupel.dart';
 
@@ -15,7 +16,11 @@ class BoardComponent extends World {
 
   @override
   Future<void> onLoad() async {
-    _fromBoardService(boardService.board);
+    eventManager.listen((event) {
+      if (event is BoardChangeEvent) {
+        _fromBoardService(event.board);
+      }
+    });
   }
 
   @override

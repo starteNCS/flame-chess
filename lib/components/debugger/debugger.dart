@@ -12,16 +12,16 @@ class DebuggerComponent extends PositionComponent {
 
   @override
   Future<void> onLoad() async {
-    eventStream.stream.listen((event) {
+    eventManager.listen((event) {
       _events.add(event);
     });
 
-    eventStream.add(MessageEvent(message: 'Debugger initialized'));
+    eventManager.publishEvent(MessageEvent(message: 'Debugger initialized'));
   }
 
   @override
   void render(Canvas canvas) {
-    final messages = _events.map((e) => e.value).join("\n");
+    final messages = _events.map((e) => e.debuggerValue).join("\n");
     _textPaint.render(canvas, messages, position);
   }
 }

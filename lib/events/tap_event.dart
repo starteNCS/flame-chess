@@ -8,10 +8,9 @@ class TapEvent extends Event {
   final Figure figure;
   final Vector2 position;
 
-  TapEvent({required this.color, required this.figure, required this.position})
-      : super(message: '');
+  TapEvent({required this.color, required this.figure, required this.position});
 
   @override
-  String get value =>
+  String get debuggerValue =>
       'Tapped ${color.pathName} ${figure.pathName} at (${position.x.toStringAsFixed(0)}, ${position.y.toStringAsFixed(0)})';
 }

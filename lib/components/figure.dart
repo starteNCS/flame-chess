@@ -25,8 +25,8 @@ class FigureComponent extends BoardPositionComponent {
 
   @override
   void onTapUp(TapUpEvent event) {
-    eventStream
-        .add(TapEvent(color: color, figure: figure, position: boardPosition));
+    eventManager.publishEvent(
+        TapEvent(color: color, figure: figure, position: boardPosition));
   }
 
   @override

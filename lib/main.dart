@@ -10,6 +10,7 @@ import 'package:flutterwindows/components/debugger/debugger.dart';
 import 'package:flutterwindows/events/event.dart';
 
 final eventStream = StreamController<Event>.broadcast();
+const isDebugMode = true;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

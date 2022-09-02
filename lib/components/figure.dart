@@ -21,14 +21,18 @@ class FigureComponent extends BoardPositionComponent {
   });
 
   @override
+  bool get debugMode => isDebugMode;
+
+  @override
   void onTapUp(TapUpEvent event) {
-    eventStream.add(TapEvent(color: color, figure: figure));
+    eventStream
+        .add(TapEvent(color: color, figure: figure, position: boardPosition));
   }
 
   @override
   void render(Canvas canvas) {
     final sprite = Sprite(Flame.images.fromCache(_getFigureImagePath()));
-    sprite.render(canvas, size: figureSize, position: pos);
+    sprite.render(canvas, size: figureSize);
 
     super.render(canvas);
   }

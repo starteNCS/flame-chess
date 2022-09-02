@@ -4,9 +4,6 @@ import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterwindows/components/board.dart';
-import 'package:flutterwindows/components/figure.dart';
-import 'package:flutterwindows/util/enums/color.dart';
-import 'package:flutterwindows/util/enums/figure.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,27 +20,19 @@ class ChessGame extends FlameGame {
     await Flame.images.loadAll([
       'figures/black/pawn.png',
       'figures/black/rook.png',
+      'figures/black/knight.png',
+      'figures/black/bishop.png',
+      'figures/black/queen.png',
+      'figures/black/king.png',
       'figures/white/pawn.png',
       'figures/white/rook.png',
+      'figures/white/knight.png',
+      'figures/white/bishop.png',
+      'figures/white/queen.png',
+      'figures/white/king.png',
     ]);
 
-    final pawn = FigureComponent(
-      figureX: 0,
-      figureY: 0,
-      color: FigureColor.white,
-      figure: Figure.rook,
-    );
-
-    final pawn2 = FigureComponent(
-      figureX: 0,
-      figureY: 1,
-      color: FigureColor.white,
-      figure: Figure.pawn,
-    );
-
-    final board = BoardComponent()
-      ..add(pawn)
-      ..add(pawn2);
+    final board = BoardComponent();
 
     final camera = CameraComponent(world: board)
       ..viewfinder.visibleGameSize = Vector2(1600, 1600)

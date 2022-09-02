@@ -9,4 +9,13 @@ extension FigureColorExtension on FigureColor {
         return 'black';
     }
   }
+
+  double get movementDirection {
+    switch (this) {
+      case FigureColor.white:
+        return 1;
+      case FigureColor.black:
+        return -1;
+    }
+  }
 }

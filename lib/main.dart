@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutterwindows/components/board.dart';
 import 'package:flutterwindows/components/debugger/debugger.dart';
 import 'package:flutterwindows/events/event.dart';
+import 'package:flutterwindows/services/board_service.dart';
 
+final BoardService boardService = BoardService();
 final eventStream = StreamController<Event>.broadcast();
 const isDebugMode = true;
 

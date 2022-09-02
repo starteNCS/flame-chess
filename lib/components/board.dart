@@ -2,13 +2,12 @@ import 'dart:ui';
 
 import 'package:flame/experimental.dart';
 import 'package:flutterwindows/components/figure.dart';
-import 'package:flutterwindows/util/enums/color.dart';
-import 'package:flutterwindows/util/enums/figure.dart';
+import 'package:flutterwindows/main.dart';
+import 'package:flutterwindows/services/models/figure_tupel.dart';
+
+import '../services/board_service.dart';
 
 class BoardComponent extends World {
-  static const int boardXSize = 8;
-  static const int boardYSize = 8;
-
   static const double fieldSize = 200;
 
   final whitePaint = Paint()..color = const Color(0xffdddddd);
@@ -16,13 +15,13 @@ class BoardComponent extends World {
 
   @override
   Future<void> onLoad() async {
-    _seedFigures(FigureColor.white);
+    _fromBoardService(boardService.board);
   }
 
   @override
   void render(Canvas canvas) {
-    for (int x = 0; x < boardXSize; x++) {
-      for (int y = 0; y < boardYSize; y++) {
+    for (int x = 0; x < BoardService.boardXSize; x++) {
+      for (int y = 0; y < BoardService.boardYSize; y++) {
         canvas.drawRect(
             Rect.fromPoints(
               Offset(x * fieldSize, y * fieldSize),
@@ -33,39 +32,21 @@ class BoardComponent extends World {
     }
   }
 
-  void _seedFigures(FigureColor color) {
-    addAll([
-      FigureComponent(
-          figureX: 0, figureY: 0, color: color, figure: Figure.rook),
-      FigureComponent(
-          figureX: 1, figureY: 0, color: color, figure: Figure.knight),
-      FigureComponent(
-          figureX: 2, figureY: 0, color: color, figure: Figure.bishop),
-      FigureComponent(
-          figureX: 3, figureY: 0, color: color, figure: Figure.queen),
-      FigureComponent(
-          figureX: 4, figureY: 0, color: color, figure: Figure.king),
-      FigureComponent(
-          figureX: 5, figureY: 0, color: color, figure: Figure.bishop),
-      FigureComponent(
-          figureX: 6, figureY: 0, color: color, figure: Figure.knight),
-      FigureComponent(
-          figureX: 7, figureY: 0, color: color, figure: Figure.rook),
-    ]);
+  void _fromBoardService(List<List<FigureTupel?>> figures) {
+    for (int x = 0; x < figures.length; x++) {
+      for (int y = 0; y < figures[x].length; y++) {
+        final figure = figures[y][x];
+        if (figure == null) {
+          continue;
+        }
 
-    _seedPawns(1, FigureColor.white);
-  }
-
-  void _seedPawns(int row, FigureColor color) {
-    for (int x = 0; x < boardXSize; x++) {
-      add(
-        FigureComponent(
+        add(FigureComponent(
           figureX: x,
-          figureY: row,
-          color: color,
-          figure: Figure.pawn,
-        ),
-      );
+          figureY: y,
+          color: figure.color,
+          figure: figure.figure,
+        ));
+      }
     }
   }
 }

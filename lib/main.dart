@@ -5,11 +5,11 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterwindows/components/board.dart';
 import 'package:flutterwindows/components/figure.dart';
-import 'package:flutterwindows/components/figures/pawn.dart';
 import 'package:flutterwindows/util/enums/color.dart';
 import 'package:flutterwindows/util/enums/figure.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final game = ChessGame();
 
   runApp(GameWidget(

@@ -5,7 +5,7 @@ class BoardPositionComponent extends PositionComponent {
   final int figureX;
   final int figureY;
   final Vector2 figureSize =
-      Vector2(BoardComponent.figureSize, BoardComponent.figureSize);
+      Vector2(BoardComponent.fieldSize, BoardComponent.fieldSize);
 
   BoardPositionComponent({required this.figureX, required this.figureY});
 
